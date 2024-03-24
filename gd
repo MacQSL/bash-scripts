@@ -4,11 +4,11 @@
 # Date:     20-08-23
 # Purpose:  Helper script for launching common directories
 #
-projects=(~/.config/nvim ~ ${HOME}/projects/*)
+projects=(${HOME}/projects/*)
 directories=`echo "${projects[@]}" | tr ' ' '\n'`
 selected=`printf "$directories" | fzf`
 if [[ ! -z $selected ]]; then
-  cd $selected;
+  cd $selected
   (ls)
 fi
 

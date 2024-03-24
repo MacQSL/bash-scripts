@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+# Author:   Mac Deluca
+# Date:     24-10-23
+# Purpose: Helper script for launching work projects
+#
+# Note: currently only supporting SIMS projects
+#       can extend to handling critterbase / other projects fzf
+
+SIMS_DIR="~/projects/biohubbc/"
+SESSION=sims
+WINDOW=${SESSION}:0
+PANE_0=${WINDOW}.0
+PANE_1=${WINDOW}.1
+
+tmux new-session -d -s "$SESSION"
+tmux send "cd $SIMS_DIR && clear" ENTER
+tmux send-keys -t "$SESSION".1 "cd $SIMS_DIR" ENTER
+sub_dir=`echo "app database api" | tr ' ' '\n' | fzf`
+
+if [ -z $sub_dir ]; then
+  >&2 echo "no sub dir selected"
+else
+  tmux send "cd $SIMS_DIR/$sub_dir && clear" ENTER
+fi
+
+tmux send-keys -t "$SESSION".1 "sudo make clean && sudo make web" ENTER
+tmux attach
+
+

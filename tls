@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Author:   Mac Deluca
+# Date:     20-08-23
+# Purpose:  Helper script for attaching to tmux sessions
+#
+#terminals="launch:terminals" -- $terminals beside echo
+
+selected=`echo $(tmux ls | cut -d: -f1) | pick`
+
+if [ -z "$selected" ]; then
+  >&2 echo "no session selected"
+
+# elif [ "$selected" == "$terminals" ]; then
+#   tmux new-session -A -s "~TERMINALS~" \; split-window -f -h;
+#
+
+else
+  tmux attach-session -t "$selected"
+  echo "session: $selected"
+fi
+
