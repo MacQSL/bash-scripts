@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Author:   Mac Deluca
+# Date:     20-08-23
+# Purpose:  Queries ITIS Solr service and translates TSN <--> Scientific Name
+#
+STDIN=$(cat)
+ITIS_SOLR="https://services.itis.gov/?wt=json%26json.wrf=callback&q=tsn:(${STDIN// /%20})+nameWOInd:(*${STDIN// /%20}*)"
+curl -s $ITIS_SOLR |
+  jq '.response.docs[] | {tsn, scientific_name: .nameWOInd, rank, hierarchy: (.hierarchyTSN[0] | gsub("\\$"; " "))}'
+
