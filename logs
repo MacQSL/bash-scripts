@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# Author:   Mac Deluca
+# Date:     30-03-24
+# Purpose:  Helper script for launching common directories
+#
+
+# Use fzf to pick a running container
+CONTAINER=$(docker ps --all --format 'json' | jq -r '.Names' | fzf)
+
+# output the logs to terminal
+docker logs $CONTAINER --follow --tail 500

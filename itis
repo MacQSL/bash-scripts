@@ -1,8 +1,9 @@
 #!/bin/bash
 #
 # Author:   Mac Deluca
-# Date:     20-08-23
+# Date:     30-02-23
 # Purpose:  Queries ITIS Solr service and translates TSN <--> Scientific Name
+# How to:   `echo 180703 | itis` OR `echo alces | itis` OR file.txt | itis
 #
 STDIN=$(cat)
 ITIS_SOLR="https://services.itis.gov/?wt=json%26json.wrf=callback&q=tsn:(${STDIN// /%20})+nameWOInd:(*${STDIN// /%20}*)"
