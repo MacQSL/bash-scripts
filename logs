@@ -2,7 +2,7 @@
 #
 # Author:   Mac Deluca
 # Date:     30-03-24
-# Purpose:  Helper script for launching common directories
+# Purpose:  Script to display docker container logs with fzf.
 #
 
 # Use fzf to pick a running container
