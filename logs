@@ -6,7 +6,7 @@
 #
 
 # Use fzf to pick a running container
-CONTAINER=$(docker ps --all --format 'json' | jq -r '.Names' | fzf)
+CONTAINER=$(docker ps --all --format 'json' | jq -r '.Names' | fzf --preview "docker logs {} --follow --tail 500")
 
 # output the logs to terminal
 docker logs $CONTAINER --follow --tail 500
