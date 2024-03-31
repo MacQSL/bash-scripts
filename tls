@@ -5,9 +5,9 @@
 # Purpose:  Helper script for attaching to tmux sessions
 #
 
-selected=`echo $(tmux ls | cut -d: -f1) | pick`
+SELECTED=`echo $(tmux ls | cut -d: -f1) | pick`
 
-if [ -z "$selected" ]; then
+if [ -z "$SELECTED" ]; then
   >&2 echo "no session selected"
 
 else

@@ -2,7 +2,7 @@
 #
 # Author:   Mac Deluca
 # Date:     30-03-24
-# Purpose:  Log selected docker containers.
+# Purpose:  Log selected docker container.
 # How to:   `logs` -> then select container to log.
 #
 # Dependencies:
