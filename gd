@@ -8,5 +8,6 @@
 
 # default to projects directory if no arg provided.
 cd ${1:-~/projects}/
+
 # select and change to directory
 cd $(ls -d */ | fzf)

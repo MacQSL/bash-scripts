@@ -15,6 +15,6 @@
 CONTAINER=$(docker ps --all --format 'json' | jq -r '.Names' | fzf --preview "docker logs {} --follow --tail 30" --preview-window up)
 
 # on selection, output logs to terminal
-if [ ! -z "${CONTAINER}" ]; then
-    docker logs $CONTAINER --follow --tail 250 # defaulting to last 250 lines
+if [ -n "${CONTAINER}" ]; then
+    docker logs "$CONTAINER" --follow --tail 250 # defaulting to last 250 lines
 fi
